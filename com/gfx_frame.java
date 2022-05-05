@@ -22,22 +22,13 @@ public class gfx_frame extends JFrame implements KeyListener{
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(KeyEvent.getKeyText(e.getKeyCode())){
-            case "Right":
-                plane.x_vel = 5;
-                plane.setHeroPic("right");
-                break;
-            case "Left":
-                plane.x_vel = -5;
-                plane.setHeroPic("left");
-                break;
-        }
+        plane.main_hero.keysProcessing(KeyEvent.getKeyText(e.getKeyCode()).toLowerCase());
     }
     @Override
     public void keyReleased(KeyEvent e) {
         if((KeyEvent.getKeyText(e.getKeyCode()) == "Right") ||
              (KeyEvent.getKeyText(e.getKeyCode()) == "Left")){
-            plane.x_vel = 0;
+            plane.main_hero.keysProcessing("release");
         }
         
     }
