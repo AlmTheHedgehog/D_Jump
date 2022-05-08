@@ -1,19 +1,20 @@
 package com.main_hero;
+import com.gfx_panel;
+import com.field.*;
+
 import java.util.HashMap;
 import javax.swing.*;
-
-import com.gfx_panel;
-
 import java.awt.*;
 
 public class main_hero_cl{
     public final int JUMP_HEIGHT = 233;  //standart jump for 700x470
     final private double SPEED_CHANGE_COEF = 6.473;  //9.33 - for max speed = 5px; 6.473 = 6px; 4.756 = 7px
-    final private int P_HEIGHT, P_WIDTH, HERO_HEIGHT = 90, FIELD_CENTER;
+    final private int P_HEIGHT, P_WIDTH, FIELD_CENTER;
+    public final int HERO_HEIGHT = 90, HERO_WIDTH = 95, HALF_LEGS_WIDTH = 20;
     private HashMap<String, String> main_h_file_path = new HashMap<String, String>();
     public Image hero_img;
     private String hero_cur_pic;
-    public int x_coord = 0, y_coord = 0, y_jump = 0, y_vel = 0, x_vel = 0;
+    public int x_coord = 0, y_coord = 0, y_jump = 0, y_vel = 0, x_vel = 0; // x - left, y - top
     public boolean onGround = true, isFalling = false;
 
     public main_hero_cl(){
@@ -40,13 +41,13 @@ public class main_hero_cl{
         
     }
 
-    public void action_performing(){
+    public void action_performing(field GameField){
         x_coord += x_vel;
         y_coord += y_jump;
-        if(x_coord > (P_WIDTH - (95/2))){
-            x_coord = -(95/2);
-        }else if(x_coord < (-(95/2))){
-            x_coord = (P_WIDTH - (95/2));
+        if(x_coord > (P_WIDTH - (HERO_WIDTH/2))){
+            x_coord = -(HERO_WIDTH/2);
+        }else if(x_coord < (-(HERO_WIDTH/2))){
+            x_coord = (P_WIDTH - (HERO_WIDTH/2));
         }
         if(onGround){
             onGround = false;
@@ -62,16 +63,25 @@ public class main_hero_cl{
                 }
             }
             if(isFalling){
-                if(y_jump <= 0){
+                y_coord -= y_jump;
+                if(GameField.HeroCollision(this)){
                     isFalling = false;
                     onGround = true;
+                    //TODO Here you should  y_coord += y_jump;! to catch standart y coord!
+                    //And move field to the top, while hero is going down
                 }else{
                     y_vel = -((int) Math.ceil(Math.sqrt(((-1)/SPEED_CHANGE_COEF)*(y_jump - JUMP_HEIGHT))));
+                    y_coord += y_jump;
+                }
+                
+                if((y_coord + HERO_HEIGHT) >= P_HEIGHT){
+                    //TODO The game is lost
                 }
             }
         }
         y_jump += y_vel;
         y_coord -= y_jump;
+        
     }
 
     /**
