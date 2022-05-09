@@ -13,7 +13,7 @@ public class brick {
     }};
     final public int B_LENGTH = 70, B_HEIGHT = 20;
     public brickType type;
-    public int[] left_bottom_coord;
+    public int[] left_top_coord;
     public Image brick_img;
     
     /**
@@ -24,7 +24,7 @@ public class brick {
      */
     public brick(brickType typeBrick, int x_left, int y_down){
         type = typeBrick;
-        left_bottom_coord = new int[]{x_left, y_down};
+        left_top_coord = new int[]{x_left, y_down};
         brick_img = new ImageIcon(BRICKS_IMG_PATH.get(type)).getImage();
     }
 }

@@ -60,6 +60,10 @@ public class main_hero_cl{
                     y_jump = JUMP_HEIGHT - 1;
                 }else{
                     y_vel = (int) Math.ceil(Math.sqrt(((-1)/SPEED_CHANGE_COEF)*(y_jump - JUMP_HEIGHT)));
+                    if(((y_coord - y_jump) + HERO_HEIGHT) <= (P_HEIGHT / 2)){
+                        y_coord += y_vel;
+                        GameField.MoveField(y_vel);
+                    }
                 }
             }
             if(isFalling){
@@ -67,8 +71,9 @@ public class main_hero_cl{
                 if(GameField.HeroCollision(this)){
                     isFalling = false;
                     onGround = true;
+                    y_jump = 0;
                     //TODO Here you should  y_coord += y_jump;! to catch standart y coord!
-                    //And move field to the top, while hero is going down
+                    //And move field to the top, if hero reached y_field_center
                 }else{
                     y_vel = -((int) Math.ceil(Math.sqrt(((-1)/SPEED_CHANGE_COEF)*(y_jump - JUMP_HEIGHT))));
                     y_coord += y_jump;
@@ -79,9 +84,10 @@ public class main_hero_cl{
                 }
             }
         }
-        y_jump += y_vel;
-        y_coord -= y_jump;
-        
+        if(!onGround){
+            y_jump += y_vel;
+            y_coord -= y_jump;
+        }        
     }
 
     /**
