@@ -11,7 +11,7 @@ public class brick {
         put(brickType.MOVING, "pic/field/brick_blue.png");
         put(brickType.UNSTABLE, "pic/field/brick_brown.png");
     }};
-    final public int B_LENGTH = 70, B_HEIGHT = 20;
+    static final public int B_LENGTH = 70, B_HEIGHT = 20;
     public brickType type;
     public int[] left_top_coord;
     public Image brick_img;
@@ -22,9 +22,9 @@ public class brick {
      *@param x_left x coordinate of left bottom corner
      *@param y_down y coordinate of left bottom corner
      */
-    public brick(brickType typeBrick, int x_left, int y_down){
+    public brick(brickType typeBrick, int x_left, int y_top){
         type = typeBrick;
-        left_top_coord = new int[]{x_left, y_down};
+        left_top_coord = new int[]{x_left, y_top};
         brick_img = new ImageIcon(BRICKS_IMG_PATH.get(type)).getImage();
     }
 }
