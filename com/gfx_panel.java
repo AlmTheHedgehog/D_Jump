@@ -35,6 +35,8 @@ public class gfx_panel extends JPanel implements ActionListener{
         repaint();
         main_hero.action_performing(GameField);
     }
+
+    //TODO point counter (if(!isFalling){counter += y_vel}) + add visualization for it
 }
 
 

@@ -72,8 +72,6 @@ public class main_hero_cl{
                     isFalling = false;
                     onGround = true;
                     y_jump = 0;
-                    //TODO Here you should  y_coord += y_jump;! to catch standart y coord!
-                    //And move field to the top, if hero reached y_field_center
                 }else{
                     y_vel = -((int) Math.ceil(Math.sqrt(((-1)/SPEED_CHANGE_COEF)*(y_jump - JUMP_HEIGHT))));
                     y_coord += y_jump;

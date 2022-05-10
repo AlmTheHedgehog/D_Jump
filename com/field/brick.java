@@ -27,4 +27,8 @@ public class brick {
         left_top_coord = new int[]{x_left, y_top};
         brick_img = new ImageIcon(BRICKS_IMG_PATH.get(type)).getImage();
     }
+
+    //TODO moving function for moving brick
+
+    //explosion function for unstable brick
 }

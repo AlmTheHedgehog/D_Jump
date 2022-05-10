@@ -19,11 +19,16 @@ public class field {
         for(brick eachBrick:allBricks){
             if(((hero.x_coord + (hero.HERO_WIDTH/2) + hero.HALF_LEGS_WIDTH) >= eachBrick.left_top_coord[0]) &&
                     ((hero.x_coord + ((hero.HERO_WIDTH/2) - hero.HALF_LEGS_WIDTH)) <= 
-                    (eachBrick.left_top_coord[0] + eachBrick.B_LENGTH))){
+                    (eachBrick.left_top_coord[0] + brick.B_LENGTH))){
                 if(((hero.y_coord + hero.HERO_HEIGHT) >= eachBrick.left_top_coord[1]) &&
                         (((hero.y_coord + hero.HERO_HEIGHT) + hero.y_vel) < eachBrick.left_top_coord[1])){
+                    if(eachBrick.type == brickType.UNSTABLE){
+                        allBricks.remove(eachBrick);
+                        return false;
+                    }else{
+                        return true;
+                    }
                     //TODO if collision with brown -> change pictures of explosion and delete it, return FALSE
-                    return true;
                 }
             }
         }
@@ -44,33 +49,44 @@ public class field {
         }
         allBricks = newAllBricks;
         FieldFilling(y_topBrick);
-        //TODO add new bricks at top
     }
 
     void FieldFilling(int y_top){
-        if(((y_top - MIN_DIST_BTW_BRICKS) - brick.B_HEIGHT) >= 0){    
-            if(y_top >= MAX_DIST_BTW_BRICKS){
+        if((y_top - MIN_DIST_BTW_BRICKS) >= 0){    
+            if((y_top + brick.B_HEIGHT) >= MAX_DIST_BTW_BRICKS){
                 newBrick(true);
             }else{
                 int probability = (int)(Math.random() * 101);
                 if(probability <= 5){
-                    newBrick(false);
+                    newBrick(false, y_top + brick.B_HEIGHT);
                 }
             }
         }
     }
 
     void newBrick(boolean notUnstable){
+        newBrick(notUnstable, 1, 0);
+    }
+    void newBrick(boolean notUnstable, int prevBrickDist){
+        newBrick(notUnstable, prevBrickDist, 0);
+    }
+    void newBrick(boolean notUnstable, int prevBrickDist, int availableSpace){
+        int SpaceForBrick = 1;
+        if(availableSpace != 0){
+            SpaceForBrick = 2;
+        }
         int probability = (int)(Math.random() * 101);
         if(probability <= 80){
-            allBricks.add(new brick(brickType.STANDART, (int)(Math.random() * (gfx_panel.P_WIDTH 
-                            - brick.B_LENGTH)), 0));
+            allBricks.add(new brick(brickType.STANDART, (int)(Math.random() * (gfx_panel.P_WIDTH - brick.B_LENGTH)), 
+                            (int)((Math.random())*(-availableSpace)) - (brick.B_HEIGHT * SpaceForBrick)));
         }else if((probability > 95) || (notUnstable)){
-            allBricks.add(new brick(brickType.MOVING, (int)(Math.random() * (gfx_panel.P_WIDTH 
-                            - brick.B_LENGTH)), 0));
+            allBricks.add(new brick(brickType.MOVING, (int)(Math.random() * (gfx_panel.P_WIDTH - brick.B_LENGTH)), 
+                            (int)((Math.random())*(-availableSpace)) - (brick.B_HEIGHT * SpaceForBrick)));
         }else{
             allBricks.add(new brick(brickType.UNSTABLE, (int)(Math.random() * (gfx_panel.P_WIDTH 
-                            - brick.B_LENGTH)), 0));
+                            - brick.B_LENGTH)), -brick.B_HEIGHT));
+            availableSpace = (MAX_DIST_BTW_BRICKS - prevBrickDist) - brick.B_HEIGHT;
+            newBrick(true, SpaceForBrick, availableSpace);            
         }
     }
 }
