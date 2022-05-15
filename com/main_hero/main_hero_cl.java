@@ -9,7 +9,7 @@ import java.awt.*;
 public class main_hero_cl{
     public final int JUMP_HEIGHT = 233;  //standart jump for 700x470
     final private double SPEED_CHANGE_COEF = 6.473;  //9.33 - for max speed = 5px; 6.473 = 6px; 4.756 = 7px
-    final private int P_HEIGHT, P_WIDTH, FIELD_CENTER;
+    final private int P_HEIGHT, P_WIDTH, FIELD_CENTER, HERO_X_SPEED = 4;
     public final int HERO_HEIGHT = 90, HERO_WIDTH = 95, HALF_LEGS_WIDTH = 20;
     private HashMap<String, String> main_h_file_path = new HashMap<String, String>();
     public Image hero_img;
@@ -95,11 +95,11 @@ public class main_hero_cl{
     public void keysProcessing(String operetion){
         switch(operetion){
             case "right":
-                x_vel = 5;
+                x_vel = HERO_X_SPEED;
                 setHeroPic("right");
                 break;
             case "left":
-                x_vel = -5;
+                x_vel = -HERO_X_SPEED;
                 setHeroPic("left");
                 break;
             case "release":

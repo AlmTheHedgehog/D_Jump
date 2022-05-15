@@ -25,6 +25,7 @@ public class gfx_panel extends JPanel implements ActionListener{
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
         for(brick eachBrick:GameField.allBricks){
+            eachBrick.moveBrick();
             g2D.drawImage(eachBrick.brick_img, eachBrick.left_top_coord[0], eachBrick.left_top_coord[1], null);
         }
         g2D.drawImage(main_hero.hero_img, main_hero.x_coord, main_hero.y_coord, null);
