@@ -2,10 +2,14 @@ package com.game.gfx;
 import javax.swing.*;
 import java.awt.event.*;
 
+
 public class gfx_frame extends JFrame implements KeyListener{
     public final int F_HEIGHT = 700, F_WIDTH = 470;
-    gfx_panel plane = new gfx_panel(F_HEIGHT, F_WIDTH);
+    gfx_GamePanel plane;
+    gfx_StartPanel StartPlane;
     public gfx_frame(){
+        plane = new gfx_GamePanel(F_HEIGHT, F_WIDTH);
+        StartPlane = new gfx_StartPanel(F_HEIGHT, F_WIDTH);
         this.setSize(F_WIDTH, F_HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(plane);
@@ -17,8 +21,6 @@ public class gfx_frame extends JFrame implements KeyListener{
     }
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        
     }
     @Override
     public void keyPressed(KeyEvent e) {
@@ -33,3 +35,7 @@ public class gfx_frame extends JFrame implements KeyListener{
         
     }
 }
+
+//TODO plane like a screen - it`s needed to create new classes of planes for hello and lose screens
+
+//TODO add music :)

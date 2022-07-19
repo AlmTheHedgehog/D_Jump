@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class gfx_panel extends JPanel implements ActionListener{
+public class gfx_GamePanel extends JPanel implements ActionListener{
     public static int P_HEIGHT, P_WIDTH;
     Timer hero_timer;
     main_hero_cl main_hero;
     field GameField;
-    gfx_panel(int height, int width){
+    gfx_GamePanel(int height, int width){
         P_HEIGHT = height;
         P_WIDTH = width;
         main_hero = new main_hero_cl();

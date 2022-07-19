@@ -1,6 +1,6 @@
 package com.game.field;
 import com.game.field.brick.brickType;
-import com.game.gfx.gfx_panel;
+import com.game.gfx.gfx_GamePanel;
 import com.game.main_hero.*;
 
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ public class field {
     private int MIN_DIST_BTW_BRICKS = 20, MAX_DIST_BTW_BRICKS = 220;
 
     public field(){
-        allBricks.add(new brick(brickType.STANDART, gfx_panel.P_WIDTH/2, 500-20));
-        allBricks.add(new brick(brickType.STANDART, gfx_panel.P_WIDTH/3, 400-20));
+        allBricks.add(new brick(brickType.STANDART, gfx_GamePanel.P_WIDTH/2, 500-20));
+        allBricks.add(new brick(brickType.STANDART, gfx_GamePanel.P_WIDTH/3, 400-20));
         allBricks.add(new brick(brickType.STANDART, 300, 200-20));
     }
 
@@ -37,13 +37,13 @@ public class field {
     
     public void MoveField(int dist){
         ArrayList<brick> newAllBricks = new ArrayList<brick>();
-        int y_topBrick = gfx_panel.P_HEIGHT; 
+        int y_topBrick = gfx_GamePanel.P_HEIGHT; 
         for(brick eachBrick:allBricks){
             eachBrick.left_top_coord[1] += dist;
             if(y_topBrick > eachBrick.left_top_coord[1]){
                 y_topBrick = eachBrick.left_top_coord[1];
             }
-            if(!(eachBrick.left_top_coord[1] >= gfx_panel.P_HEIGHT)){
+            if(!(eachBrick.left_top_coord[1] >= gfx_GamePanel.P_HEIGHT)){
                 newAllBricks.add(eachBrick);
             }
         }
@@ -77,13 +77,13 @@ public class field {
         }
         int probability = (int)(Math.random() * 101);
         if(probability <= 80){
-            allBricks.add(new brick(brickType.STANDART, (int)(Math.random() * (gfx_panel.P_WIDTH - brick.B_LENGTH)), 
+            allBricks.add(new brick(brickType.STANDART, (int)(Math.random() * (gfx_GamePanel.P_WIDTH - brick.B_LENGTH)), 
                             (int)((Math.random())*(-availableSpace)) - (brick.B_HEIGHT * SpaceForBrick)));
         }else if((probability > 95) || (notUnstable)){
-            allBricks.add(new brick(brickType.MOVING, (int)(Math.random() * (gfx_panel.P_WIDTH - brick.B_LENGTH)), 
+            allBricks.add(new brick(brickType.MOVING, (int)(Math.random() * (gfx_GamePanel.P_WIDTH - brick.B_LENGTH)), 
                             (int)((Math.random())*(-availableSpace)) - (brick.B_HEIGHT * SpaceForBrick)));
         }else{
-            allBricks.add(new brick(brickType.UNSTABLE, (int)(Math.random() * (gfx_panel.P_WIDTH 
+            allBricks.add(new brick(brickType.UNSTABLE, (int)(Math.random() * (gfx_GamePanel.P_WIDTH 
                             - brick.B_LENGTH)), -brick.B_HEIGHT));
             availableSpace = (MAX_DIST_BTW_BRICKS - prevBrickDist) - brick.B_HEIGHT;
             newBrick(true, SpaceForBrick, availableSpace);            

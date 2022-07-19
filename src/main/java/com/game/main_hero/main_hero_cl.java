@@ -1,28 +1,29 @@
 package com.game.main_hero;
-import com.game.gfx.gfx_panel;
+import com.game.gfx.gfx_GamePanel;
 import com.game.field.*;
 
 import java.util.HashMap;
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class main_hero_cl{
     public final int JUMP_HEIGHT = 233;  //standart jump for 700x470
     final private double SPEED_CHANGE_COEF = 6.473;  //9.33 - for max speed = 5px; 6.473 = 6px; 4.756 = 7px
     final private int P_HEIGHT, P_WIDTH, FIELD_CENTER, HERO_X_SPEED = 4;
     public final int HERO_HEIGHT = 90, HERO_WIDTH = 95, HALF_LEGS_WIDTH = 20;
-    private HashMap<String, String> main_h_file_path = new HashMap<String, String>();
+    private HashMap<String, URL> main_h_file_path = new HashMap<String, URL>();
     public Image hero_img;
     private String hero_cur_pic;
     public int x_coord = 0, y_coord = 0, y_jump = 0, y_vel = 0, x_vel = 0; // x - left, y - top
     public boolean onGround = true, isFalling = false;
 
     public main_hero_cl(){
-        P_HEIGHT = gfx_panel.P_HEIGHT;
-        P_WIDTH = gfx_panel.P_WIDTH;
-        main_h_file_path.put("left", "src/main/resources/main_h/hero_l.png");
-        main_h_file_path.put("right", "src/main/resources/main_h/hero_r.png");
-        main_h_file_path.put("shot", "src/main/resources/main_h/hero_s.png");
+        P_HEIGHT = gfx_GamePanel.P_HEIGHT;
+        P_WIDTH = gfx_GamePanel.P_WIDTH;
+        main_h_file_path.put("left", getClass().getResource("/main_h/hero_l.png"));
+        main_h_file_path.put("right", getClass().getResource("/main_h/hero_r.png"));
+        main_h_file_path.put("shot", getClass().getResource("/main_h/hero_s.png"));
         hero_img = new ImageIcon(main_h_file_path.get("right")).getImage();
         hero_cur_pic = "right";
         FIELD_CENTER = (P_HEIGHT/2) - HERO_HEIGHT;
