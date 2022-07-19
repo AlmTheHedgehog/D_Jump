@@ -1,18 +1,17 @@
-package com.field;
+package com.game.field;
 
 import java.util.HashMap;
 import java.awt.*;
 import javax.swing.*;
 
-import com.gfx_frame;
-import com.gfx_panel;
+import com.game.gfx.gfx_panel;
 
 public class brick {
     enum brickType{STANDART, UNSTABLE, MOVING};
     static private final HashMap<brickType, String> BRICKS_IMG_PATH = new HashMap<brickType, String>(){{
-        put(brickType.STANDART, "pic/field/brick_green.png");
-        put(brickType.MOVING, "pic/field/brick_blue.png");
-        put(brickType.UNSTABLE, "pic/field/brick_brown.png");
+        put(brickType.STANDART, "src/main/resources/field/brick_green.png");
+        put(brickType.MOVING, "src/main/resources/field/brick_blue.png");
+        put(brickType.UNSTABLE, "src/main/resources/field/brick_brown.png");
     }};
     static final public int B_LENGTH = 70, B_HEIGHT = 20;
     private final int BRICKSPEED = 2;

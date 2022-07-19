@@ -1,0 +1,8 @@
+com\game\field\brick.class
+com\game\field\brick$1.class
+com\game\gfx\gfx_panel.class
+com\game\field\brick$brickType.class
+com\game\gfx\gfx_frame.class
+com\game\main_hero\main_hero_cl.class
+com\game\field\field.class
+com\game\d_jump.class

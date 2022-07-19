@@ -1,6 +1,6 @@
-package com.main_hero;
-import com.gfx_panel;
-import com.field.*;
+package com.game.main_hero;
+import com.game.gfx.gfx_panel;
+import com.game.field.*;
 
 import java.util.HashMap;
 import javax.swing.*;
@@ -20,9 +20,9 @@ public class main_hero_cl{
     public main_hero_cl(){
         P_HEIGHT = gfx_panel.P_HEIGHT;
         P_WIDTH = gfx_panel.P_WIDTH;
-        main_h_file_path.put("left", "pic/main_h/hero_l.png");
-        main_h_file_path.put("right", "pic/main_h/hero_r.png");
-        main_h_file_path.put("shot", "pic/main_h/hero_s.png");
+        main_h_file_path.put("left", "src/main/resources/main_h/hero_l.png");
+        main_h_file_path.put("right", "src/main/resources/main_h/hero_r.png");
+        main_h_file_path.put("shot", "src/main/resources/main_h/hero_s.png");
         hero_img = new ImageIcon(main_h_file_path.get("right")).getImage();
         hero_cur_pic = "right";
         FIELD_CENTER = (P_HEIGHT/2) - HERO_HEIGHT;

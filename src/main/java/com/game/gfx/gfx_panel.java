@@ -1,6 +1,6 @@
-package com;
-import com.main_hero.main_hero_cl;
-import com.field.*;
+package com.game.gfx;
+import com.game.main_hero.main_hero_cl;
+import com.game.field.*;
 
 import javax.swing.*;
 import java.awt.*;

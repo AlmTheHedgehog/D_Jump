@@ -1,7 +1,7 @@
-package com.field;
-import com.field.brick.brickType;
-import com.gfx_panel;
-import com.main_hero.*;
+package com.game.field;
+import com.game.field.brick.brickType;
+import com.game.gfx.gfx_panel;
+import com.game.main_hero.*;
 
 import java.util.ArrayList;
 
