@@ -1,16 +1,19 @@
 package com.game.gfx;
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.*;
 
-
-public class gfx_frame extends JFrame implements KeyListener{
+public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     public final int F_HEIGHT = 700, F_WIDTH = 470;
+    int Points;
+    boolean isInGame = false;
     gfx_GamePanel GamePlane;
     gfx_StartPanel StartPlane;
+    Timer ScreenTimer;
     public gfx_frame(){
-        GamePlane = new gfx_GamePanel(F_HEIGHT, F_WIDTH);
-        StartPlane = new gfx_StartPanel(F_HEIGHT, F_WIDTH);
+        Points = 0;
+        ScreenTimer = new Timer(100, this);
+        ScreenTimer.start();
+        StartPlane = new gfx_StartPanel(F_HEIGHT, F_WIDTH, Points);
         this.setSize(F_WIDTH, F_HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(StartPlane);
@@ -25,18 +28,43 @@ public class gfx_frame extends JFrame implements KeyListener{
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        GamePlane.main_hero.keysProcessing(KeyEvent.getKeyText(e.getKeyCode()).toLowerCase());
+        if(isInGame){
+            GamePlane.main_hero.keysProcessing(KeyEvent.getKeyText(e.getKeyCode()).toLowerCase());
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
-        if((KeyEvent.getKeyText(e.getKeyCode()) == "Right") ||
+        if(isInGame){
+            if((KeyEvent.getKeyText(e.getKeyCode()) == "Right") ||
              (KeyEvent.getKeyText(e.getKeyCode()) == "Left")){
                 GamePlane.main_hero.keysProcessing("release");
+            }
         }
         
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(isInGame){
+            if(!GamePlane.isPanelActive){
+                Points = Math.max(Points, GamePlane.getPoints());
+                StartPlane = new gfx_StartPanel(F_HEIGHT, F_WIDTH, Points);
+                isInGame = false;
+                GamePlane.hero_timer.stop();
+                remove(GamePlane);
+                add(StartPlane);
+                validate();
+            }
+        }else{
+            if(!StartPlane.isPanelActive){
+                GamePlane = new gfx_GamePanel(F_HEIGHT, F_WIDTH);
+                GamePlane.isPanelActive = true;
+                isInGame = true;
+                remove(StartPlane);
+                add(GamePlane);
+                validate();
+            }
+        }
+    }
 }
-
-//TODO plane like a screen - it`s needed to create new classes of planes for hello and lose screens
 
 //TODO add music :)

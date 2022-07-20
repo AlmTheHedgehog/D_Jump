@@ -8,27 +8,39 @@ import java.net.URL;
 
 public class gfx_StartPanel extends JPanel{
     public static int P_HEIGHT, P_WIDTH;
+    public int Points;
+    public boolean isPanelActive = false;
     private final int BUTT_WXH[] = {300, 150};
     enum ButtStatus{PLAY_PRESSED, PLAY_UNPRESSED};
     ButtStatus ButtStat;
     ButtConteiner ButtCont;
-    GridBagConstraints PanelContainer;
-    gfx_StartPanel(int height, int width){
+    JLabel PointsLabel;
+    JPanel helpPanel;
+    gfx_StartPanel(int height, int width, int points){
         P_HEIGHT = height;
         P_WIDTH = width;
-        setLayout(new GridBagLayout());
-        PanelContainer = new GridBagConstraints();
+        Points = points;
+        isPanelActive = true;
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(Box.createRigidArea(new Dimension(0, 100)));
+        PointsLabel = new JLabel(Integer.toString(Points));
+        PointsLabel.setFont(new Font("Serif", Font.PLAIN, 100));
+        PointsLabel.setForeground(new Color(10, 10, 100));
+        PointsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(PointsLabel);
+        setPreferredSize(new Dimension(P_WIDTH, P_HEIGHT));
         ButtStat = ButtStatus.PLAY_UNPRESSED;
         ButtCont = new ButtConteiner();
-        PanelContainer.insets = new Insets(P_HEIGHT/2,0,0,0);
-        add(ButtCont, PanelContainer);
-        setPreferredSize(new Dimension(P_WIDTH, P_HEIGHT));
+        helpPanel = new JPanel();
+        helpPanel.add(ButtCont);
+        add(Box.createRigidArea(new Dimension(0, 200)));
+        add(helpPanel);
     }
 
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(ButtCont.ButtImage, ButtCont.getX(), ButtCont.getY(), null);
+        g2D.drawImage(ButtCont.ButtImage, ButtCont.getX(), ButtCont.getY() + helpPanel.getY(), null);
     }
 
     public void makeRepaint(){
@@ -54,8 +66,6 @@ public class gfx_StartPanel extends JPanel{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            // TODO change screen
-            
         }
 
         @Override
@@ -68,6 +78,7 @@ public class gfx_StartPanel extends JPanel{
         public void mouseReleased(MouseEvent e) {
             ButtStat = ButtStatus.PLAY_UNPRESSED;
             ChangeButtImage();
+            isPanelActive = false;
         }
 
         @Override

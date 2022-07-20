@@ -15,8 +15,8 @@ public class main_hero_cl{
     private HashMap<String, URL> main_h_file_path = new HashMap<String, URL>();
     public Image hero_img;
     private String hero_cur_pic;
-    public int x_coord = 0, y_coord = 0, y_jump = 0, y_vel = 0, x_vel = 0; // x - left, y - top
-    public boolean onGround = true, isFalling = false;
+    public int x_coord = 0, y_coord = 0, y_jump = 0, y_vel = 0, x_vel = 0, PointsCounter; // x - left, y - top
+    public boolean onGround = true, isFalling = false, isDead = false;
 
     public main_hero_cl(){
         P_HEIGHT = gfx_GamePanel.P_HEIGHT;
@@ -26,6 +26,7 @@ public class main_hero_cl{
         main_h_file_path.put("shot", getClass().getResource("/main_h/hero_s.png"));
         hero_img = new ImageIcon(main_h_file_path.get("right")).getImage();
         hero_cur_pic = "right";
+        PointsCounter = 0;
         FIELD_CENTER = (P_HEIGHT/2) - HERO_HEIGHT;
         y_coord = FIELD_CENTER + JUMP_HEIGHT;
     }
@@ -64,6 +65,7 @@ public class main_hero_cl{
                     if(((y_coord - y_jump) + HERO_HEIGHT) <= (P_HEIGHT / 2)){
                         y_coord += y_vel;
                         GameField.MoveField(y_vel);
+                        PointsCounter += y_vel;
                     }
                 }
             }
@@ -77,16 +79,15 @@ public class main_hero_cl{
                     y_vel = -((int) Math.ceil(Math.sqrt(((-1)/SPEED_CHANGE_COEF)*(y_jump - JUMP_HEIGHT))));
                     y_coord += y_jump;
                 }
-                
-                if((y_coord + HERO_HEIGHT) >= P_HEIGHT){
-                    //TODO The game is lost
+                if(((y_coord - y_jump) - HERO_HEIGHT) >= P_HEIGHT){
+                    isDead = true;
                 }
             }
         }
         if(!onGround){
             y_jump += y_vel;
             y_coord -= y_jump;
-        }        
+        }
     }
 
     /**
@@ -107,6 +108,7 @@ public class main_hero_cl{
                 x_vel = 0;
                 break;
             case "shoot":
+                //TODO main_hero shoot
                 break;
             default:
                 System.out.println("Unknown key operetion");
