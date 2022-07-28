@@ -1,8 +1,8 @@
 package com.game.gfx;
 import com.game.main_hero.main_hero_cl;
 import com.game.field.*;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -20,7 +20,7 @@ public class gfx_GamePanel extends JPanel implements ActionListener{
         GameField = new field();
         this.setPreferredSize(new Dimension(P_WIDTH, P_HEIGHT));
         isPanelActive = true;
-        hero_timer = new Timer(5, this);
+        hero_timer = new Timer(12, this); //1-5(5 max) without music
         hero_timer.start();
         PointsLabel = new JLabel(Integer.toString(getPoints()));
         PointsLabel.setFont(new Font("Serif", Font.PLAIN, 40));
@@ -45,12 +45,15 @@ public class gfx_GamePanel extends JPanel implements ActionListener{
         main_hero.action_performing(GameField);
         if(main_hero.isDead){
             isPanelActive = false;
+            //Deactivate music?
         }
     }
 
     public int getPoints(){
         return main_hero.PointsCounter/10;
     }
+
+    
 }
 
 

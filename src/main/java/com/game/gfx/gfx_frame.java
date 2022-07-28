@@ -1,6 +1,10 @@
 package com.game.gfx;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
+
+import javax.sound.sampled.*;
 
 public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     public final int F_HEIGHT = 700, F_WIDTH = 470;
@@ -9,6 +13,7 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     gfx_GamePanel GamePlane;
     gfx_StartPanel StartPlane;
     Timer ScreenTimer;
+    Clip ClipAudio;
     public gfx_frame(){
         Points = 0;
         ScreenTimer = new Timer(100, this);
@@ -22,6 +27,7 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        PlayMusic();
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -65,6 +71,23 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
             }
         }
     }
+
+    public void PlayMusic(){
+        //ClipAudio.close(); - to stope music
+        try {
+            File fileAudio = new File(getClass().getResource("/music.wav").toURI());
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+            AudioFormat AudioFormat = audioStream.getFormat();
+            DataLine.Info di = new DataLine.Info(Clip.class, AudioFormat);
+            ClipAudio = (Clip)AudioSystem.getLine(di);
+            ClipAudio.open(audioStream);
+            ClipAudio.loop(Clip.LOOP_CONTINUOUSLY);
+            ClipAudio.start();
+        }
+        catch (Exception e) {
+            System.out.println("Music play error");
+        }
+    }
 }
 
-//TODO add music :)
+//TODO blue bricks mooving check

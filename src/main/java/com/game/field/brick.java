@@ -53,6 +53,8 @@ public class brick {
 
     public void moveBrick(){
         if(type == brickType.MOVING){
+            System.out.println("j");
+            System.out.println("j-");
             left_top_coord[0] += BrickVel;
             if((left_top_coord[0] > movingBeginEnd[1]) || (left_top_coord[0] < movingBeginEnd[0])){
                 BrickVel *= -1;
