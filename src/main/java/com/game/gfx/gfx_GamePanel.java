@@ -32,7 +32,6 @@ public class gfx_GamePanel extends JPanel implements ActionListener{
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
         for(brick eachBrick:GameField.allBricks){
-            eachBrick.moveBrick();
             g2D.drawImage(eachBrick.brick_img, eachBrick.left_top_coord[0], eachBrick.left_top_coord[1], null);
         }
         g2D.drawImage(main_hero.hero_img, main_hero.x_coord, main_hero.y_coord, null);
@@ -41,6 +40,9 @@ public class gfx_GamePanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        for(brick eachBrick:GameField.allBricks){
+            eachBrick.moveBrick();
+        }
         repaint();
         main_hero.action_performing(GameField);
         if(main_hero.isDead){

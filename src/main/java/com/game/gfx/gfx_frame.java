@@ -3,6 +3,7 @@ package com.game.gfx;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
+import java.net.URISyntaxException;
 
 import javax.sound.sampled.*;
 
@@ -75,8 +76,7 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     public void PlayMusic(){
         //ClipAudio.close(); - to stope music
         try {
-            File fileAudio = new File(getClass().getResource("/music.wav").toURI());
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileAudio);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/sounds/music.wav"));
             AudioFormat AudioFormat = audioStream.getFormat();
             DataLine.Info di = new DataLine.Info(Clip.class, AudioFormat);
             ClipAudio = (Clip)AudioSystem.getLine(di);
@@ -86,8 +86,7 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
         }
         catch (Exception e) {
             System.out.println("Music play error");
+            System.out.println(e.getMessage());
         }
     }
 }
-
-//TODO blue bricks mooving check

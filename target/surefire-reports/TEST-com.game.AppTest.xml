@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.game.AppTest" time="0.033" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.game.AppTest" time="0.031" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.class.path" value="I:\Тима\Prog\Java\Training\d_jump\target\test-classes;I:\Тима\Prog\Java\Training\d_jump\target\classes;C:\Users\Тима\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Тима\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="i:\Тима\Prog\Java\Training\d_jump\target\test-classes;i:\Тима\Prog\Java\Training\d_jump\target\classes;C:\Users\Тима\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Тима\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-18.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\6278~1\AppData\Local\Temp\surefire2705022095454924393\surefirebooter4176778906305540578.jar C:\Users\Тима\AppData\Local\Temp\surefire2705022095454924393 2022-07-29T01-30-16_471-jvmRun1 surefire7196675872034847887tmp surefire_03004804724098756687tmp"/>
+    <property name="sun.java.command" value="C:\Users\6278~1\AppData\Local\Temp\surefire11220137452827274546\surefirebooter11597895013783137257.jar C:\Users\Тима\AppData\Local\Temp\surefire11220137452827274546 2022-07-29T11-02-38_980-jvmRun1 surefire8426149154675720877tmp surefire_011734700912371660093tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="I:\Тима\Prog\Java\Training\d_jump\target\test-classes;I:\Тима\Prog\Java\Training\d_jump\target\classes;C:\Users\Тима\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Тима\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="i:\Тима\Prog\Java\Training\d_jump\target\test-classes;i:\Тима\Prog\Java\Training\d_jump\target\classes;C:\Users\Тима\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Тима\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Тима"/>
     <property name="user.language" value="ru"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2022-04-19"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-18.0.1"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="I:\Тима\Prog\Java\Training\d_jump"/>
+    <property name="basedir" value="i:\Тима\Prog\Java\Training\d_jump"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\6278~1\AppData\Local\Temp\surefire2705022095454924393\surefirebooter4176778906305540578.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\6278~1\AppData\Local\Temp\surefire11220137452827274546\surefirebooter11597895013783137257.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="18.0.1+10-24"/>
@@ -44,7 +44,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\6278~1\AppData\Local\Temp\"/>
     <property name="java.version" value="18.0.1"/>
-    <property name="user.dir" value="I:\Тима\Prog\Java\Training\d_jump"/>
+    <property name="user.dir" value="i:\Тима\Prog\Java\Training\d_jump"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
