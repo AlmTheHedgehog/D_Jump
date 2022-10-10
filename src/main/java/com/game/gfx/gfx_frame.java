@@ -1,11 +1,11 @@
 package com.game.gfx;
 
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.File;
-import java.net.URISyntaxException;
 
-import javax.sound.sampled.*;
+import com.game.sound.MusicThread;
+
+import java.awt.event.*;
+
 
 public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     public final int F_HEIGHT = 700, F_WIDTH = 470;
@@ -14,12 +14,13 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
     gfx_GamePanel GamePlane;
     gfx_StartPanel StartPlane;
     Timer ScreenTimer;
-    Clip ClipAudio;
+    MusicThread Music;
     public gfx_frame(){
         Points = 0;
         ScreenTimer = new Timer(100, this);
         ScreenTimer.start();
         StartPlane = new gfx_StartPanel(F_HEIGHT, F_WIDTH, Points);
+        Music = new MusicThread();
         this.setSize(F_WIDTH, F_HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(StartPlane);
@@ -28,7 +29,7 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        PlayMusic();
+        Music.start();
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -73,20 +74,5 @@ public class gfx_frame extends JFrame implements KeyListener, ActionListener{
         }
     }
 
-    public void PlayMusic(){
-        //ClipAudio.close(); - to stope music
-        try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(getClass().getResource("/sounds/music.wav"));
-            AudioFormat AudioFormat = audioStream.getFormat();
-            DataLine.Info di = new DataLine.Info(Clip.class, AudioFormat);
-            ClipAudio = (Clip)AudioSystem.getLine(di);
-            ClipAudio.open(audioStream);
-            ClipAudio.loop(Clip.LOOP_CONTINUOUSLY);
-            ClipAudio.start();
-        }
-        catch (Exception e) {
-            System.out.println("Music play error");
-            System.out.println(e.getMessage());
-        }
-    }
+    
 }
